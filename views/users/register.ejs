@@ -1,0 +1,154 @@
+<%- include('../layouts/header.ejs') %>
+
+  <!--form  action="" method="post" enctype="multipart/form-data">
+    <input type="text"name="name" placeholder="Enter Name" required>
+    <br><br>
+    <input type="email"name="email" placeholder="Enter email" required>
+    <br><br>
+    <input type="text"name="mno" placeholder="Enter Mobile" required>
+    <br><br>
+    <input type="file" name="image" required>
+    <br><br>
+    <input type="password"name="password" placeholder="Enter Password" required>
+    <br><br>
+    <input type="submit" value="Register">
+    <br><br>
+ </form-->
+
+
+<section class="vh-100" style="background-color: #9A616D;">
+  <div class="container py-3 h-70">
+    <div class="row d-flex justify-content-center align-items-center h-70">
+      <div class="col col-xl-9">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem; height: 520px; " />
+            </div>
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+
+                <form  action="" method="post" enctype="multipart/form-data"  >
+
+                  <div class="d-flex align-items-center mb-3 pb-1">
+                    <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                    <span class="h1 fw-bold mb-0">User Registration Form</span>
+                  </div>
+
+                  <div class="form-outline mb-3">
+                    <label class="form-label" for="form2Example17">Username</label>
+                      <input type="text" name="name" id="user" class="form-control form-control-lg" required />
+                      <span id="username" class="text-danger font-weight-bold"> </span>
+                </div>
+                  
+
+                  <div class="form-outline mb-3">
+                    <label class="form-label" for="form2Example17">Email address</label>
+                    <input type="text" name="email" id="emails" class="form-control form-control-lg" required />
+                    <span id="emailids" class="text-danger font-weight-bold"> </span>
+                  </div>
+
+                  <div class="form-outline mb-3">
+                    <label class="form-label" for="form2Example27">MobileNumber</label>
+                    <input type="text" name="mno" id="mobileNumber" class="form-control form-control-lg" required />
+                    <span id="mobileno" class="text-danger font-weight-bold"> </span>
+                  </div>
+
+                  <div class="form-outline mb-3">
+                    <label class="form-label" for="form2Example27">Image</label>
+                    <input type="file" id="form2Example27" name="image" class="form-control form-control-lg" required />
+                  </div>
+
+                  <div class="form-outline mb-3">
+                    <label class="form-label" for="form2Example27">Password</label>
+                    <input type="text"  name="password" id="pass"  class="form-control form-control-lg" required />
+                    <span id="passwords" class="text-danger font-weight-bold"> </span>
+                  </div>
+                  
+                   <input type="submit"  value="Register" class="btn-success" onclick="return validation()" >
+                  
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<% 
+ 
+ if(typeof message !== 'undefined'){
+   %>
+   <p style="color:red;"><%= message %></p>
+   <%
+ }
+ 
+%>
+
+
+<script type="text/JavaScript">
+
+
+  function validation(){
+                var user = document.getElementById('user').value;
+                var emails = document.getElementById('emails').value;
+                var mobileNumber = document.getElementById('mobileNumber').value;
+                var pass = document.getElementById('pass').value;
+                
+    
+                if (user == "") {
+                    document.getElementById('username').innerHTML ="  Plese fill the username field";
+                    return false;
+                }
+                if ((user.length <= 2 || user.length > 20)) {
+                  document.getElementById('username').innerHTML = "   user length must be between 2 and 20";
+                  return false;
+                }
+                
+                if (!isNaN(user)){
+                  document.getElementById('username').innerHTML ="   only characters are allowed";
+                  return false;
+                }
+                if (emails == "") {
+                    document.getElementById('emailids').innerHTML ="  Plese fill the email ids field";
+                    return false;
+                }
+                if(emails.indexOf('@') <= 0 ){
+                    document.getElementById('emailids').innerHTML ="  @ Invalid Postion";
+                    return false;
+                }
+                
+                if((emails.charAt(emails.length-4)!='.')  && (emails.charAt(emails.length-3)!='.')){
+                    document.getElementById('emailids').innerHTML ="  . Invalid Postion";
+                    return false;
+                }
+                if (mobileNumber == "") {
+                    document.getElementById('mobileno').innerHTML ="  Plese fill the mobile Number field";
+                    return false;
+                }
+                if(isNaN(mobileNumber)){
+                    document.getElementById('mobileno').innerHTML ="  user must write digits only not character ";
+                    return false;
+                }
+                if(mobileNumber.length!=10){
+                    document.getElementById('mobileno').innerHTML ="  mobile Number must be 10 digits only ";
+                    return false;
+                }
+                if (pass == "") {
+                  document.getElementById('passwords').innerHTML ="  Plese fill the password field";
+                  return false;
+                }
+                if((pass.length <= 5) || (pass.length > 20)){
+                  document.getElementById('passwords').innerHTML ="  ** password length must be between 5 and 20";
+                    return false;
+                }
+}
+</script>
+
+
+<%- include('../layouts/footer.ejs') %>
